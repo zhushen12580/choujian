@@ -1,0 +1,4 @@
+Flask==2.3.2
+Flask-WTF==1.1.1
+requests==2.31.0
+revChatGPT==6.8.6
