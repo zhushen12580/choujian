@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        p {
+            font-size: 30px;
+        }
+
+        button {
+            font-size: 30px;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>抽奖</h1>
+    <p>国际站组的获奖者是: <span id="winner-international">{{ winner_international }}</span></p>
+    <p>国内站组的获奖者是: <span id="winner-domestic">{{ winner_domestic }}</span></p>
+    <button id="draw">抽奖</button>
+
+    <script>
+        $(document).ready(function () {
+            $('#draw').click(function () {
+                $.ajax({
+                    url: '/draw',
+                    type: 'POST',
+                    success: function (response) {
+                        $('#winner-international').text(response.winner_international);
+                        $('#winner-domestic').text(response.winner_domestic);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
