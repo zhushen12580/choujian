@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import random
-
+import os
 app = Flask(__name__)
 
 # 姓名列表
@@ -24,4 +24,5 @@ def draw():
     return jsonify(winner_international=winner_international, winner_domestic=winner_domestic)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, use_reloader=False)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
